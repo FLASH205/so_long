@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 10:12:06 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/01 15:07:22 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/02 18:39:39 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int	ft_check_wall(t_map *map)
 			return (0);
 		x++;
 	}
-	if (map->width == 0 || map->height == 0)
-		return (0);
 	return (1);
 }
 
