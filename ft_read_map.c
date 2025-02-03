@@ -6,7 +6,7 @@
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:13:51 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/01 16:17:13 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/03 12:53:26 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,32 +21,33 @@ int	ft_read(t_map *map, int fd)
 	i = 0;
 	nb = 0;
 	line = get_next_line(fd);
-	while (line)
+	while (i < map->height)
 	{
 		nb = ft_strlen(line);
 		if (ft_strchr(line))
 			nb -= 1;
-		map->map_data[i] = ft_strdup(line);
+		map->map_data[i] = line;
+		map->map_data[i + 1] = NULL;
+		if (!map->map_data[i])
+			return (get_next_line(-1), 0);
 		i++;
-		if (!map->map_data)
-			return (free(line), ft_free(map->map_data, map->height), 0);
 		if (nb != map->width)
-			return (write(2, "Error\nThe map isn't rectangular\n", 32), 0);
-		free(line);
+			return (get_next_line(-1),
+				write(2, "Error\nThe map isn't rectangular\n", 32), 0);
 		line = get_next_line(fd);
 	}
-	map->map_data[i] = NULL;
 	return (1);
 }
 
 int	ft_read_map(t_map *map, char *name_map)
 {
 	int		fd;
+	int		n;
 
 	fd = open(name_map, O_RDONLY);
 	if (fd < 0)
 		return (write(2, "Error\nFailed open file\n", 23), 0);
-	if (ft_read(map, fd) == 0)
-		return (0);
-	return (close(fd), 1);
+	n = ft_read(map, fd);
+	close(fd);
+	return (n);
 }

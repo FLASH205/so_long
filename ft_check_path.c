@@ -6,7 +6,7 @@
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 10:16:08 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/01 16:29:16 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/03 12:43:57 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	**ft_copy_map(t_map *map)
 	{
 		copy[i] = ft_strdup(map->map_data[i]);
 		if (!copy[i])
-			return (ft_free(copy, map->height), NULL);
+			return (ft_free(copy), NULL);
 		i++;
 	}
 	copy[i] = NULL;
@@ -61,5 +61,5 @@ int	ft_check_path(t_map *map)
 	ft_find_player(map);
 	if (ft_flood_fill(copy, map->x, map->y, map) != map->c + 1)
 		return (write(2, "Error\nthe player is trapped\n", 28), 0);
-	return (ft_free(copy, map->height), 1);
+	return (ft_free(copy), 1);
 }

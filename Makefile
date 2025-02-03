@@ -11,7 +11,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	cc $(FLAG) $(OBJ) $(MLX) -o $(NAME)
 
-%.o: %.c so_long.h
+%.o: %.c so_long.h get_next_line.h
 	cc $(FLAG) -c $< -o $@
 
 clean :

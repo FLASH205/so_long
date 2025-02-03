@@ -3,27 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_close_window.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:12:33 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/02 18:03:11 by youssef          ###   ########.fr       */
+/*   Updated: 2025/02/03 12:42:55 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_free(char **arr, int height)
+void	ft_free(char **arr)
 {
 	int	y;
 
 	y = 0;
-	while (y < height)
+	while (arr[y])
 	{
 		free(arr[y]);
 		y++;
 	}
 	free(arr);
-	arr = NULL;
 }
 
 int	ft_close_window(t_mlx_data *data)
@@ -46,7 +45,7 @@ int	ft_close_window(t_mlx_data *data)
 		free(data->mlx_ptr);
 	}
 	if (data->map && data->map->map_data)
-		ft_free(data->map->map_data, data->map->height);
+		ft_free(data->map->map_data);
 	if (data)
 		free(data);
 	exit(0);
