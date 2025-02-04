@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:28:19 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/04 12:06:00 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/04 17:53:36 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  SO_LONG_H
-# define SO_LONG_H
+#ifndef  SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "include/minilibx-linux/mlx.h"
 # include "get_next_line.h"
@@ -32,15 +32,28 @@ typedef struct s_map
 	void	*wall_img;
 	void	*player_img;
 	void	*collect_img;
+	void	*enemy_img;
 	void	*exit_img;
 	void	*bg;
 	int		x;
 	int		y;
 	int		c;
+	
 }	t_map;
+
+typedef struct s_enemy
+{
+	int		x;
+	int		y;
+	int		direction;
+}	t_enemy;
 
 typedef struct s_mlx_data
 {
+	t_enemy	*enemies;
+	int		count_enemy;
+	void	*frames[3];
+	int		current;
 	void	*mlx_ptr;
 	void	*window;
 	void	*img;
@@ -59,5 +72,7 @@ void	ft_free(char **arr);
 void	ft_print_moves(int nbr);
 int		ft_handle_input(int key, t_mlx_data *data);
 int		ft_strcmp(char *s1, char *s2);
+int		ft_animation(t_mlx_data *data);
+void	ft_init_enemy(t_mlx_data *data, t_map *map);
 
 #endif

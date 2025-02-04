@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_input.c                                  :+:      :+:    :+:   */
+/*   ft_handle_input_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybahmaz <ybahmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:26:49 by ybahmaz           #+#    #+#             */
-/*   Updated: 2025/02/04 10:12:47 by ybahmaz          ###   ########.fr       */
+/*   Updated: 2025/02/04 13:18:55 by ybahmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	ft_find_player(t_map *map)
 {
@@ -45,6 +45,8 @@ void	ft_move_player(t_mlx_data *data, int new_x, int new_y, t_map *map)
 	if (map->map_data[new_y][new_x] == '1'
 	|| map->map_data[new_y][new_x] == 'E' )
 		return ;
+	if (map->map_data[new_y][new_x] == 'M')
+		ft_close_window(data, 0);
 	if (map->map_data[new_y][new_x] == 'C')
 		map->c--;
 	map->map_data[new_y][new_x] = 'P';
